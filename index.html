@@ -3,19 +3,173 @@
 
   <head>
     <meta charset="UTF-8">
-    <title>give tab display name</title>
+    <title>CrystalsCollector Game</title>
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+
+    <style type="text/css">
+      .crystal-image {
+        width: 100px;
+        height: 100px;
+       }
+    </style>
+
   </head>
 
   <body>
-    <!-- <img src="./assets/images/*.jpg" width="150" height="120" /> -->
+
+    <h1>Number to Guess: <span id="number-to-guess"></span></h1>
+
+    <!-- Note that this div is now empty. We will fill it dynamically -->
+    <div id="crystals">    </div>
+    <p id="newscore"> </p>
+    <p id="wins"> </p>
+    <p id="losses"> </p>
+
+    <!-- ========================================= -->
+
+    <!-- JAVASCRIPT  -->
+    <!-- Calling Jquery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+
+      function randomNumberFromRange(min,max)
+         {
+            return Math.floor(Math.random()*(max-min+1)+min);
+         }
+
+      var minNumber = 19;
+      var maxNumber = 120;
+
+      var targetNumber = randomNumberFromRange(minNumber, maxNumber);
+      $("#number-to-guess").text(targetNumber);
 
 
+    // Now for the hard part. Creating multiple crystals each with their own unique number value.
+      var numberOptions = [];
+         minNumber = 1;
+         maxNumber = 12;
+         numberOptions[0] = randomNumberFromRange(minNumber, maxNumber);
+         numberOptions[1] = randomNumberFromRange(minNumber, maxNumber);
+         numberOptions[2] = randomNumberFromRange(minNumber, maxNumber);
+         numberOptions[3] = randomNumberFromRange(minNumber, maxNumber);
 
-    <script type="text/javascript" src="./assets/javascript/game.js"></script>
-  </body>
 
-  <footer>
+    // We begin by expanding our array to include four options.
+    alert(targetNumber + " => "+ numberOptions[0] + ", "+  numberOptions[1] + ", "+  numberOptions[2] + ", "+  numberOptions[3])
 
-  </footer>
+    var counter = 0;
+    var wins=0;
+    var losses=0;
+
+    // Next we create a for loop to create crystals for every numberOption.
+    for (var i = 0; i < numberOptions.length; i++) {
+
+    // For each iteration, we will create an imageCrystal
+    var imageCrystal = $("<img>");
+
+    // First each crystal will be given the class ".crystal-image".
+    // This will allow the CSS to take effect.
+    imageCrystal.addClass("crystal-image");
+
+    // Each imageCrystal will be given a src link to the crystal image
+    imageCrystal.attr("src", "./assets/images/crystal"+(i+1)+".jpg");
+
+    // Each imageCrystal will be given a data attribute called data-crystalValue.
+    // This data attribute will be set equal to the array value.
+    imageCrystal.attr("data-crystalvalue", numberOptions[i]);
+
+    // Lastly, each crystal image (with all it classes and attributes) will get added to the page.
+    $("#crystals").append(imageCrystal);
+  }
+
+  // This time, our click event applies to every single crystal on the page. Not just one.
+ $(".crystal-image").on("click", function() {
+
+    // Determining the crystal's value requires us to extract the value from the data attribute.
+    // Using the $(this) keyword specifies that we should be extracting the crystal value of the clicked crystal.
+    // Using the .attr("data-crystalvalue") allows us to grab the value out of the "data-crystalvalue" attribute.
+    // Since attributes on HTML elements are strings, we must convert it to an integer before adding to the counter
+
+
+    var crystalValue = ($(this).attr("data-crystalvalue"));
+    crystalValue = parseInt(crystalValue);
+    // We then add the crystalValue to the user's "counter" which is a global variable.
+    // Every click, from every crystal adds to the global counter.
+    counter += crystalValue;
+
+    // All of the same game win-lose logic applies. So the rest remains unchanged.
+    // alert("New score: " + counter);
+      $("#newscore").text(counter);
+
+    if (counter === targetNumber) {
+      wins++;
+      $("#wins").text(wins);
+      $("#newscore").text(counter);
+      // alert("You win!"+ wins);
+
+      counter =0;
+      $("#newscore").text(counter);
+
+      minNumber = 19;
+      maxNumber = 120;
+
+      targetNumber = randomNumberFromRange(minNumber, maxNumber);
+      $("#number-to-guess").text(targetNumber);
+
+      minNumber = 1;
+      maxNumber = 12;
+      numberOptions = [];
+      numberOptions[0] = randomNumberFromRange(minNumber, maxNumber);
+      numberOptions[1] = randomNumberFromRange(minNumber, maxNumber);
+      numberOptions[2] = randomNumberFromRange(minNumber, maxNumber);
+      numberOptions[3] = randomNumberFromRange(minNumber, maxNumber);
+      alert(targetNumber + " => "+ numberOptions[0] + ", "+  numberOptions[1] + ", "+  numberOptions[2] + ", "+  numberOptions[3])
+
+    }
+
+    if (counter >= targetNumber) {
+      losses++;
+      $("#losses").text(losses);
+      $("#newscore").text(counter);
+      // alert("You lose!!"+losses);
+
+      counter =0;
+      $("#newscore").text(counter);
+
+
+      minNumber = 19;
+      maxNumber = 120;
+
+      targetNumber = randomNumberFromRange(minNumber, maxNumber);
+      $("#number-to-guess").text(targetNumber);
+
+      minNumber = 1;
+      maxNumber = 12;
+      numberOptions = [];
+      numberOptions[0] = randomNumberFromRange(minNumber, maxNumber);
+      numberOptions[1] = randomNumberFromRange(minNumber, maxNumber);
+      numberOptions[2] = randomNumberFromRange(minNumber, maxNumber);
+      numberOptions[3] = randomNumberFromRange(minNumber, maxNumber);
+      alert(targetNumber + " => "+ numberOptions[0] + ", "+  numberOptions[1] + ", "+  numberOptions[2] + ", "+  numberOptions[3])
+
+      for (var i = 0; i < numberOptions.length; i++) {
+        // This data attribute will be set equal to the array value.
+          imageCrystal.attr("data-crystalvalue", numberOptions[i]);
+
+        // Lastly, each crystal image (with all it classes and attributes) will get added to the page.
+        $("#crystals").append(imageCrystal);
+      }
+
+
+    }
+
+
+  });
+
+  </script>
+
+<!-- <script type="text/javascript" src="./assets/javascript/game.js"></script> -->
+
+
+</body>
 </html>
