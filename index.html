@@ -37,53 +37,59 @@
             return Math.floor(Math.random()*(max-min+1)+min);
          }
 
-      var minNumber = 19;
-      var maxNumber = 120;
+      var minNumber = 0;
+      var maxNumber = 0;
+      var targetNumber = 0;
+      var numberOptions = [];
 
-      var targetNumber = randomNumberFromRange(minNumber, maxNumber);
+    function initiateNoAndCrystal() {
+      minNumber = 19;
+      maxNumber = 120;
+
+      targetNumber = randomNumberFromRange(minNumber, maxNumber);
       $("#number-to-guess").text(targetNumber);
 
+      minNumber = 1;
+      maxNumber = 12;
+      numberOptions = [];
+      for (var i=0; i<4;i++) {
+      numberOptions[i] = randomNumberFromRange(minNumber, maxNumber);
+      }
+     }
 
-    // Now for the hard part. Creating multiple crystals each with their own unique number value.
-      var numberOptions = [];
-         minNumber = 1;
-         maxNumber = 12;
-         numberOptions[0] = randomNumberFromRange(minNumber, maxNumber);
-         numberOptions[1] = randomNumberFromRange(minNumber, maxNumber);
-         numberOptions[2] = randomNumberFromRange(minNumber, maxNumber);
-         numberOptions[3] = randomNumberFromRange(minNumber, maxNumber);
-
+     initiateNoAndCrystal();
 
     // We begin by expanding our array to include four options.
-    alert(targetNumber + " => "+ numberOptions[0] + ", "+  numberOptions[1] + ", "+  numberOptions[2] + ", "+  numberOptions[3])
 
     var counter = 0;
     var wins=0;
     var losses=0;
 
-    // Next we create a for loop to create crystals for every numberOption.
-    for (var i = 0; i < numberOptions.length; i++) {
-
-    // For each iteration, we will create an imageCrystal
-    var imageCrystal = $("<img>");
-
-    // First each crystal will be given the class ".crystal-image".
-    // This will allow the CSS to take effect.
-    imageCrystal.addClass("crystal-image");
-
-    // Each imageCrystal will be given a src link to the crystal image
-    imageCrystal.attr("src", "./assets/images/crystal"+(i+1)+".jpg");
-
-    // Each imageCrystal will be given a data attribute called data-crystalValue.
-    // This data attribute will be set equal to the array value.
-    imageCrystal.attr("data-crystalvalue", numberOptions[i]);
-
+    const createCrystals = function(){
+      $("#crystals").empty();
+        numberOptions.forEach(function(value, i){
+        // For each iteration, we will create an imageCrystal
+        var imageCrystal = $("<img>");
+        // First each crystal will be given the class ".crystal-image".
+        // This will allow the CSS to take effect.
+        imageCrystal.addClass("crystal-image");
+        // Each imageCrystal will be given a src link to the crystal image
+        imageCrystal.attr("src", "./assets/images/crystal"+(i+1)+".jpg");
+        // Each imageCrystal will be given a data attribute called data-crystalValue.
+        // This data attribute will be set equal to the array value.
+        imageCrystal.attr("data-crystalvalue", value);
     // Lastly, each crystal image (with all it classes and attributes) will get added to the page.
     $("#crystals").append(imageCrystal);
+      });
+    };
+    // Next we create a for loop to create crystals for every numberOption.
+    for (var i = 0; i < numberOptions.length; i++) {
+      createCrystals();
   }
+  alert(targetNumber + " => "+ numberOptions.join(','));
 
   // This time, our click event applies to every single crystal on the page. Not just one.
- $(".crystal-image").on("click", function() {
+  $(document).on("click", ".crystal-image", function() {
 
     // Determining the crystal's value requires us to extract the value from the data attribute.
     // Using the $(this) keyword specifies that we should be extracting the crystal value of the clicked crystal.
@@ -103,61 +109,37 @@
 
     if (counter === targetNumber) {
       wins++;
-      $("#wins").text(wins);
+      $("#wins").text("wins : "+ wins);
       $("#newscore").text(counter);
       // alert("You win!"+ wins);
 
       counter =0;
       $("#newscore").text(counter);
 
-      minNumber = 19;
-      maxNumber = 120;
+      initiateNoAndCrystal();
+      alert(targetNumber + " => "+ numberOptions.join(','));
 
-      targetNumber = randomNumberFromRange(minNumber, maxNumber);
-      $("#number-to-guess").text(targetNumber);
+      for (var i = 0; i < numberOptions.length; i++) {
+        createCrystals();
+      }
 
-      minNumber = 1;
-      maxNumber = 12;
-      numberOptions = [];
-      numberOptions[0] = randomNumberFromRange(minNumber, maxNumber);
-      numberOptions[1] = randomNumberFromRange(minNumber, maxNumber);
-      numberOptions[2] = randomNumberFromRange(minNumber, maxNumber);
-      numberOptions[3] = randomNumberFromRange(minNumber, maxNumber);
-      alert(targetNumber + " => "+ numberOptions[0] + ", "+  numberOptions[1] + ", "+  numberOptions[2] + ", "+  numberOptions[3])
 
     }
 
     if (counter >= targetNumber) {
       losses++;
-      $("#losses").text(losses);
+      $("#losses").text("losses : " + losses);
       $("#newscore").text(counter);
       // alert("You lose!!"+losses);
 
       counter =0;
       $("#newscore").text(counter);
 
-
-      minNumber = 19;
-      maxNumber = 120;
-
-      targetNumber = randomNumberFromRange(minNumber, maxNumber);
-      $("#number-to-guess").text(targetNumber);
-
-      minNumber = 1;
-      maxNumber = 12;
-      numberOptions = [];
-      numberOptions[0] = randomNumberFromRange(minNumber, maxNumber);
-      numberOptions[1] = randomNumberFromRange(minNumber, maxNumber);
-      numberOptions[2] = randomNumberFromRange(minNumber, maxNumber);
-      numberOptions[3] = randomNumberFromRange(minNumber, maxNumber);
-      alert(targetNumber + " => "+ numberOptions[0] + ", "+  numberOptions[1] + ", "+  numberOptions[2] + ", "+  numberOptions[3])
+      initiateNoAndCrystal();
+      alert(targetNumber + " => "+ numberOptions.join(','));
 
       for (var i = 0; i < numberOptions.length; i++) {
-        // This data attribute will be set equal to the array value.
-          imageCrystal.attr("data-crystalvalue", numberOptions[i]);
-
-        // Lastly, each crystal image (with all it classes and attributes) will get added to the page.
-        $("#crystals").append(imageCrystal);
+        createCrystals();
       }
 
 
