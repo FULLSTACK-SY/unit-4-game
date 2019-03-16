@@ -4,77 +4,22 @@
   <head>
     <meta charset="UTF-8">
     <title>CrystalsCollector Game</title>
-    <title>Bootstrap-Portfolio</title>
-    <!-- <link rel="stylesheet" type="text/css" href="./assets/css/reset.css"> -->
+    <link rel="stylesheet" type="text/css" href="./assets/css/reset.css">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
 
-    <style type="text/css">
-      .crystal-image {
-        width: 100px;
-        height: 100px;
-        padding: 5px;
-       }
-
-      #heading1 {
-        clear: both;
-        margin: 0 auto;
-        padding-top: 20px;
-        padding-bottom: 20px;
-        background-color: rgb(216, 88, 42);
-        color: white;
-        width: 100%;
-        text-align: center;
-        font-size: 300%;
-        float:left;
-      }
-
-      .rulesshow {
-        /* clear: both; */
-        margin: 0 auto;
-        background-color: bisque;
-        color:green;
-        font-size:100%;
-        width:100%;
-        /* float:left; */
-        padding: 10px 5px 10px 5px;
-      }
-      .paraone {
-        margin-top: 10px;
-      }
-      .paralast {
-        padding-bottom: 60px;
-        margin-bottom: 10px;
-      }
-      body {
-        background-image: url("./assets/images/background.jpg");
-      }
-
-      #number-to-guess {
-        width:100%;
-        font-size:100%;
-        background-color: green;
-        padding-bottom: 80px;
-      }
-
-     #winloss {
-      background-color: lightskyblue;
-     }
-
-
-    </style>
 
   </head>
 
   <body>
-    <div class="container">
+    <!-- <div class="container"> -->
 
     <div class="row">
       <div class="col-8 col-sm-8 col-md-5 col-lg-4">
-        <h1 id="heading1">Crystals Collector!</h1>
+        <h1 id="heading1">CrystalsCollector!</h1>
       </div>
     </div>
 
@@ -89,33 +34,45 @@
     </div>
 
     <div class="row">
-        <div class="col-6 col-sm-6 col-md-3 col-lg-3 number-to-guess">
+        <div class="col-3 col-sm-3 col-md-3 col-lg-3 numguess">
              <h1><span id="number-to-guess"></span></h1>
         </div>
 
-        <div class="col-1 col-sm-1 col-md-1 col-lg-1 winloss">
-          <!-- Note that this div is now empty. We will fill it dynamically -->
-            <p id="wins">wins:</p>
-            <p id="losses">"losses:"</p>
+        <div class="col-1 col-sm-1 col-md-1 col-lg-1">
+          <!-- Note that this div is noclw empty. We will fill it dynamically -->
+            <p id="result" class="winloss">result</p>
+            <p class="winloss"></p>
+            <p id="wins" class="winloss">wins: 0</p>
+            <p class="winloss"></p>
+            <p id="losses" class="winloss">losses: 0</p>
         </div>
     </div>
 
     <div class="row">
         <div class="col-12 col-sm-12 col-md-6 col-lg-6">
            <div id="crystals">    </div>
-           <p id="newscore"> </p>
         </div>
     </div>
+
+    <div class="row">
+      <div class="col-3 col-sm-3 col-md-3 col-lg-3">
+         <p class="lilborder">Your total score is:</p>
+         <p></p>
+      </div>
+</div>
+
+<div class="row">
+  <div class="col-3 col-sm-3 col-md-3 col-lg-3">
+  <p id="newscore" class="ns">0 </p>
+</div>
+</div>
+
     <!-- ========================================= -->
 
     <!-- JAVASCRIPT  -->
     <!-- Calling Jquery -->
-    </div>
-
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="./assets/javascript/game.js"></script>
-
-<!-- <script type="text/javascript" src="./assets/javascript/game.js"></script> -->
 
 
 </body>

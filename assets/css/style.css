@@ -1,0 +1,74 @@
+.crystal-image {
+  width: 150px;
+  height: 150px;
+  padding: 10px;
+ }
+
+#heading1 {
+  clear: both;
+  margin: 0 auto;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: rgb(216, 88, 42);
+  color: white;
+  width: 100%;
+  text-align: center;
+  font-size: 300%;
+  /* float:left; */
+}
+
+.rulesshow {
+  margin: 0 auto;
+  background-color: bisque;
+  color:green;
+  font-size:100%;
+  width:100%;
+  padding: 10px 5px 10px 5px;
+}
+.paraone {
+  margin-top: 10px;
+}
+.paralast {
+  padding-bottom: 40px;
+  margin-bottom: 10px;
+}
+body {
+  background-image: url("./../images/background.jpg");
+}
+
+.numguess {
+  clear: both;
+  margin: 0 auto;
+  font-size:100%;
+  background-color: green;
+  padding-bottom: 50px;
+  margin-left: 13px;
+}
+
+.winloss {
+ /* clear: both; */
+margin: 0 auto;
+background-color: lightskyblue;
+margin: 0px 0px 0px 5px;
+padding-left: 5px;
+padding-bottom: 12px;
+font-size: 100%;
+}
+
+.lilborder {
+margin-top: 5px;
+/* margin-bottom: 5px; */
+background-color:rgb(21, 107, 107);
+padding-left: 10px;
+color: white;
+width: 100%;
+}
+
+.ns {
+ background-color:rgb(21, 107, 107);
+ padding-left: 10px;
+ color: white;
+ width: 100%;
+ padding-bottom: 40px;
+ font-size: 250%;
+}

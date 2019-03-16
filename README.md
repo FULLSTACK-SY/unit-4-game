@@ -1,19 +1,23 @@
 # unit-4-game
-Create four Crystal buttons
-Generate a Random Number (between 19 - 120) and display to the player.
+1. Generate a Random Number (between 19 - 120) and display to the player.
 
-Assign a random no to each Crystal (number should be between 1 - 12).
-game will hide this amount until the player clicks a crystal.
+2. Create four Crystal buttons
+   Assign a random no to each Crystal (number should be between 1 - 12).
+   game will hide this amount until the player clicks a crystal.
 
-Update user score by adding the crystal related no when the crystal button is clicked.
-update the player's score counter.
+3. Update user score by adding the crystal related no when the crystal button is clicked.
+   update the player's score counter.
 
-The player wins if their total score matches the random number from the beginning of the game.
+4. The player wins if their total score matches the random number from the beginning of the game.
 
-The player loses if their score goes above the random number.
+5. The player loses if their score goes above the random number.
 
-The game restarts whenever the player wins or loses.
+6. The game restarts whenever the player wins or loses.
 
-When the game begins again, the player should see a new random number. Also, all the crystals will have four new hidden values. 
-Of course, the user's score (and score counter) will reset to zero.
-The app should show the number of games the player wins and loses. (do not refresh the page to restart the game)
+7. When the game begins again, the player should see a new random number.
+
+8. Also, all the crystals will have four new hidden values.
+
+9. The user's score (and score counter) will reset to zero.
+
+10. The app should show the number of games the player wins and loses.

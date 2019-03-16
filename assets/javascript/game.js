@@ -2,7 +2,10 @@ var minNumber = 0;
 var maxNumber = 0;
 var targetNumber = 0;
 var numberOptions = [];
-
+var counter = 0;
+var wins=0;
+var losses=0;
+var result="";
 function randomNumberFromRange(min,max)
       {
          return Math.floor(Math.random()*(max-min+1)+min);
@@ -26,14 +29,9 @@ function randomNumberFromRange(min,max)
 initiateNoAndCrystal();
 
  // We begin by expanding our array to include four options.
-
- var counter = 0;
- var wins=0;
- var losses=0;
-
  const createCrystals = function(){
    $("#crystals").empty();
-     numberOptions.forEach(function(value, i){
+    numberOptions.forEach(function(value, i){
      // For each iteration, we will create an imageCrystal
      var imageCrystal = $("<img>");
      // First each crystal will be given the class ".crystal-image".
@@ -44,16 +42,14 @@ initiateNoAndCrystal();
      // Each imageCrystal will be given a data attribute called data-crystalValue.
      // This data attribute will be set equal to the array value.
      imageCrystal.attr("data-crystalvalue", value);
- // Lastly, each crystal image (with all it classes and attributes) will get added to the page.
- $("#crystals").append(imageCrystal);
-   });
+     // Lastly, each crystal image (with all it classes and attributes) will get added to the page.
+     $("#crystals").append(imageCrystal);
+    });
  };
  // Next we create a for loop to create crystals for every numberOption.
  for (var i = 0; i < numberOptions.length; i++) {
    createCrystals();
 }
-
-// alert(targetNumber + " => "+ numberOptions.join(','));
 
 // This time, our click event applies to every single crystal on the page. Not just one.
 $(document).on("click", ".crystal-image", function() {
@@ -75,13 +71,12 @@ $(document).on("click", ".crystal-image", function() {
      wins++;
      $("#wins").text("wins : "+ wins);
      $("#newscore").text(counter);
-     // alert("You win!"+ wins);
+     $("#result").text("You won!!")
 
      counter =0;
      $("#newscore").text(counter);
 
      initiateNoAndCrystal();
-  //  alert(targetNumber + " => "+ numberOptions.join(','));
 
      for (var i = 0; i < numberOptions.length; i++) {
        createCrystals();
@@ -93,7 +88,7 @@ $(document).on("click", ".crystal-image", function() {
    losses++;
    $("#losses").text("losses : " + losses);
    $("#newscore").text(counter);
-   // alert("You lose!!"+losses);
+   $("#result").text("You lost!!")
 
    counter =0;
    $("#newscore").text(counter);
